@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Hardhat directories
+artifacts/
+cache/
+typechain/
+typechain-types/
+
+# Environment files & Secrets
+.env
+.env.accounts
+.env.local
+*.env
+
+# Hardhat network logs & caches
+hardhat.config.js.cache
+.openzeppelin/
+
+# Testing and coverage outputs
+coverage/
+coverage.json
+.nyc_output
+
+# Editor & System Files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

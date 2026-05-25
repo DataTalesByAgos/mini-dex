@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniDEX - Decentralized Exchange</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Background Elements -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-right-left"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Mini<span>DEX</span></h1>
+                    <p>Fixed Rate Exchange</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <div class="network-badge" id="networkBadge" style="display: none;">
+                    <span class="status-indicator"></span>
+                    <span id="networkName">Hardhat Localhost</span>
+                </div>
+                <button id="connectBtn" class="btn btn-primary connect-btn">
+                    <i class="fa-solid fa-wallet"></i> Connect Wallet
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Swap Card Section -->
+            <section class="swap-section">
+                <div class="glass-card swap-card">
+                    <div class="card-header">
+                        <h2>Swap</h2>
+                        <button id="infoBtn" class="info-btn" title="DEX Details"><i
+                                class="fa-solid fa-circle-info"></i></button>
+                    </div>
+
+                    <!-- Swap Inputs -->
+                    <div class="swap-inputs-wrapper">
+                        <!-- Input Box (From) -->
+                        <div class="input-box" id="fromInputBox">
+                            <div class="input-header">
+                                <span>From</span>
+                                <span class="token-balance">Balance: <span id="fromBalance">0.00</span></span>
+                            </div>
+                            <div class="input-body">
+                                <input type="number" id="fromAmount" placeholder="0.0" min="0" step="any">
+                                <div class="token-selector">
+                                    <span class="token-logo" id="fromTokenLogo"><i
+                                            class="fa-solid fa-coins text-primary"></i></span>
+                                    <span class="token-name" id="fromTokenName">TKNA</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Direction Toggle Button -->
+                        <div class="toggle-button-wrapper">
+                            <button id="toggleDirectionBtn" class="toggle-btn" title="Switch tokens">
+                                <i class="fa-solid fa-arrow-down-up-across-line"></i>
+                            </button>
+                        </div>
+
+                        <!-- Output Box (To) -->
+                        <div class="input-box" id="toInputBox">
+                            <div class="input-header">
+                                <span>To (Estimated)</span>
+                                <span class="token-balance">Balance: <span id="toBalance">0.00</span></span>
+                            </div>
+                            <div class="input-body">
+                                <input type="number" id="toAmount" placeholder="0.0" readonly>
+                                <div class="token-selector">
+                                    <span class="token-logo" id="toTokenLogo"><i
+                                            class="fa-solid fa-coins text-secondary"></i></span>
+                                    <span class="token-name" id="toTokenName">TKNB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Swap Details -->
+                    <div class="swap-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Exchange Rate</span>
+                            <span class="detail-value" id="exchangeRateText">1 TKNA = 2 TKNB</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Liquidity Pool Fee (0.3%)</span>
+                            <span class="detail-value" id="feeText">0.00 TKNA</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Slippage Tolerance</span>
+                            <span class="detail-value">Fixed (0%)</span>
+                        </div>
+                    </div>
+
+                    <!-- Swap Main Button -->
+                    <button id="actionBtn" class="btn btn-action" disabled>
+                        Connect Wallet
+                    </button>
+                </div>
+            </section>
+
+            <!-- Dashboard Stats & Faucet -->
+            <section class="sidebar-section">
+                <!-- Wallet/Exchange Liquidity Details -->
+                <div class="glass-card info-card">
+                    <h3><i class="fa-solid fa-chart-simple text-primary"></i> Exchange Dashboard</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">DEX TKNA Balance</span>
+                            <span class="stat-value" id="dexBalanceA">0.00</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">DEX TKNB Balance</span>
+                            <span class="stat-value" id="dexBalanceB">0.00</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">User Approved TKNA</span>
+                            <span class="stat-value" id="allowanceA">0.00</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">User Approved TKNB</span>
+                            <span class="stat-value" id="allowanceB">0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testnet Faucet -->
+                <div class="glass-card faucet-card">
+                    <h3><i class="fa-solid fa-faucet text-secondary"></i> Token Faucet</h3>
+                    <p class="card-desc">Need tokens to swap? Mint 100 test tokens directly to your connected address.
+                    </p>
+                    <div class="faucet-actions">
+                        <button id="faucetABtn" class="btn btn-outline" disabled>
+                            Mint 100 TKNA
+                        </button>
+                        <button id="faucetBBtn" class="btn btn-outline" disabled>
+                            Mint 100 TKNB
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>MiniDEX &copy; 2026.</p>
+            <p class="footer-links">
+                <a href="#" id="viewCodeLink"><i class="fa-brands fa-github"></i> Repository</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Ethers.js library (v6 UMD) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+
+    <!-- Local config file generated after contract deployment -->
+    <script src="config.js"></script>
+
+    <!-- Application Logic -->
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+{
+  "name": "mini-dex",
+  "version": "1.0.0",
+  "description": "A Solidity-based mini Decentralized Exchange with fixed rate swaps, fees, and a premium frontend interface.",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "node": "hardhat node",
+    "deploy": "hardhat run scripts/deploy.js --network localhost"
+  },
+  "keywords": [
+    "solidity",
+    "dex",
+    "hardhat",
+    "ethereum",
+    "erc20"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.4"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2",
+    "ethers": "^6.12.1"
+  }
+}
